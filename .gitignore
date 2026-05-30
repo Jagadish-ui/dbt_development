@@ -1,5 +1,1 @@
-
-target/
-dbt_modules/
-logs/
-profiles_override.yml
+profiles.yml
