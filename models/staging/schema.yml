@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: stg_orders
+    description: "Staged orders with tax calculation, excludes cancelled orders"
+    columns:
+      - name: order_id
+        description: "Primary key"
+        tests:
+          - not_null
+          - unique
+      - name: customer_id
+        description: "Customer identifier"
+        tests:
+          - not_null
+      - name: status
+        description: "Order status"
+        tests:
+          - not_null
+      - name: amount
+        description: "Order amount before tax"
+        tests:
+          - not_null
+      - name: total_amount_with_tax
+        description: "Order amount including 18% tax"
+        tests:
+          - not_null
