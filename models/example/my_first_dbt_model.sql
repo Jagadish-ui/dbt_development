@@ -20,7 +20,8 @@ select
     case
         when id is not null then true
         else false
-    end as is_valid
+    end as is_valid,
+    id * 2 as id_doubled        -- ← new column!
 
 from source_data
 
