@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: raw
-    database: DEV
+    database: "{{ target.database }}"
     schema: RAW
     tables:
       - name: raw_orders
