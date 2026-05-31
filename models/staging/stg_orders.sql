@@ -2,7 +2,6 @@
 
 with raw_orders as (
 
-    -- Using source() instead of hardcoded table name!
     select * from {{ source('raw', 'raw_orders') }}
 
 )
@@ -12,9 +11,10 @@ select
     customer_id,
     status,
     amount,
-    amount * 1.18       as total_amount_with_tax,
-    order_date::date    as order_date,
-    current_timestamp   as loaded_at
+    {{ calculate_tax('amount') }}           as total_amount_with_tax,
+    {{ calculate_tax('amount', 0.05) }}     as total_amount_with_gst,
+    order_date::date                        as order_date,
+    {{ audit_columns() }}
 
 from raw_orders
 where status != 'cancelled'
